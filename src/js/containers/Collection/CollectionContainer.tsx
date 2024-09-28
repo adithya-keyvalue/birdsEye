@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CollectionCard from "../../components/CollectionCard";
 import { chips, savedNotes } from "../../common";
 import Modal from "../../components/Modal";
 import { Slider } from "@mui/material";
 import CustomSlider from "../../components/CustomSlider";
+import { useLazyGetCollectionsQuery } from "../../api/fetchCollections";
 
 const CollectionContainer = () => {
   const [isDetailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
   const [level, setLevel] = useState<number>(1);
   const [selectedOption, setSelectedOption] = useState("NOTES");
+
+  // const [getCollections, getCollectionsState] = useLazyGetCollectionsQuery();
+
+  // useEffect(() => {
+  //   getCollections();
+  // }, []);
+
+	// console.log(getCollectionsState)
 
   const collectionList = [
     { id: 1, name: "Curated links" },
