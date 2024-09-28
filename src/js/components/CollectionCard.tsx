@@ -5,6 +5,7 @@ interface CollectionCardProps {
   title: string;
   description: string;
   subtitle: string;
+  onClick: () => void;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
@@ -12,6 +13,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
   title,
   description,
   subtitle,
+  onClick,
 }) => {
   const colorCongif = [
     {
@@ -38,6 +40,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
           background: colorCongif[configNumber].backgroundColor,
           color: colorCongif[configNumber].textColor,
         }}
+        onClick={onClick}
       >
         <div>
           <img

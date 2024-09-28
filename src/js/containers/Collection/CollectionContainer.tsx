@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import CollectionCard from "../../components/CollectionCard";
+import { chips, savedNotes } from "../../common";
+import Modal from "../../components/Modal";
+import { Slider } from "@mui/material";
+import CustomSlider from "../../components/CustomSlider";
 
 const CollectionContainer = () => {
+  const [isDetailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
+  const [level, setLevel] = useState<number>(1);
+  const [selectedOption, setSelectedOption] = useState("NOTES");
+
   const collectionList = [
     { id: 1, name: "Curated links" },
     { id: 2, name: "Research papers" },
@@ -14,76 +22,71 @@ const CollectionContainer = () => {
   const [selectedCollection, setSelectedCollection] = useState(
     collectionList[1]
   );
+  const handleLevelChange = (event: any) => {
+    setLevel(event.target.value);
+  };
 
-  const chips = [
-    { id: 1, name: "All" },
-    { id: 2, name: "Articles" },
-    { id: 3, name: "Documents" },
-    { id: 4, name: "YouTube" },
+  const keyWords = [
+    "Articles",
+    "React",
+    "react-app",
+    "documentation",
+    "reference",
+    "DOM",
   ];
 
-  const savedNotes = [
-    {
-      id: 1,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'ACE© Credit Recommendation'
-    },
-    {
-      id: 2,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'Sprinklr::Idea'
-    },
-    {
-      id: 3,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'Sprinklr::Idea'
-    },
-    {
-      id: 4,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'Sprinklr::Idea'
-    },
-    {
-      id: 5,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'ACE© Credit Recommendation'
-    },
-    {
-      id: 6,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'Sprinklr::Idea'
-    },
-    {
-      id: 7,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'ACE© Credit Recommendation'
-    },
-    {
-      id: 8,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'ACE© Credit Recommendation'
-    },
-    {
-      id: 9,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'ACE© Credit Recommendation'
-    },
-    {
-      id: 10,
-      title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-      description: "www.chegg.com",
-			subtitle: 'Sprinklr::Idea'
-    },
-  ];
+  const renderSideBarComponent = () => {
+    if (selectedOption === "NOTES")
+      return (
+        <div className="flex flex-col gap-4">
+          <div className="py-5 px-4 bg-white rounded-[10px]">
+            <div className="font-medium text-[#4A3500] text-[15px] mb-4">
+              Keywords
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {keyWords.map((word) => (
+                <div className="rounded-[20px] bg-[#EAB73426] text-[#4A3500] text-[14px] px-3 py-1.5">
+                  {word}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="p-5 bg-white rounded-[10px]">
+            <div className="font-medium text-[#4A3500] text-[15px]">
+              Sub-heading
+            </div>
+            <div className="mt-4 text-[13px]">
+              <ul className="list-disc list-inside">
+                <li>
+                  The React reference documentation is broken down into
+                  functional subsections.
+                </li>
+                <li>
+                  It covers Programmatic React features such as Hooks,
+                  Components, APIs, and Directives.
+                </li>
+                <li>
+                  It also covers React DOM, which contains features for web
+                  applications running in the browser DOM environment.
+                </li>
+                <li>
+                  The documentation includes information on the Rules of React,
+                  such as component and hook purity, and the Rules of Hooks.
+                </li>
+                <li>
+                  The React reference documentation is broken down into
+                  functional subset.
+                </li>
+                <li>
+                  It also covers React DOM, which contains features for web
+                  applications running in the browser DOM environment.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+  };
 
   return (
     <div className="mt-[108px] h-screen bg-[#FAFAFA]">
@@ -136,13 +139,131 @@ const CollectionContainer = () => {
                   configNumber={Math.floor(Math.random() * 3)}
                   title={note.title}
                   description={note.description}
-									subtitle={note.subtitle}
+                  subtitle={note.subtitle}
+                  onClick={() => {
+                    setDetailsModalOpen(true);
+                  }}
                 />
               ))}
             </div>
           </div>
         </div>
       </div>
+      {isDetailsModalOpen ? (
+        <Modal
+          showModal={isDetailsModalOpen}
+          setShowModal={setDetailsModalOpen}
+        >
+          <div className="rounded-[10px] bg-white w-[80vw] h-[80vh] relative">
+            <div className="bg-[#FBFBFB] px-6 py-4 flex justify-between rounded-t-[10px]">
+              <div className="text-xs text-[#4A3500] flex items-center gap-2">
+                <img src="../../icons/react-icon.svg" alt="icon" />
+                React Reference Overview – React
+              </div>
+              <button onClick={() => setDetailsModalOpen(false)}>
+                <img src="../../icons/close-icon.svg" alt="close" />
+              </button>
+            </div>
+            <div className="bg-white p-5 flex gap-9">
+              <div className="w-3/5 pl-[105px] pr-[90px] py-4">
+                <div className="font-semibold text-[#4A3500] text-[23px] mb-3">
+                  React Reference Overview – React
+                </div>
+                <div className="p-3 font-medium text-[14px] text-[#4A3500] flex items-center border border-[#F0F0F0] rounded w-fit">
+                  Save to collection
+                  <img src="../../icons/chevron.svg" alt="chevron" />
+                </div>
+                <div className="mt-6 text-[#1D1D1D] break-words">
+                  The React reference documentation is broken down into
+                  functional subsections. It covers Programmatic React features
+                  such as Hooks, Components, APIs, and Directives. It also
+                  covers React DOM, which contains features for web applications
+                  running in the browser DOM environment.
+                </div>
+                <div className="mt-6 text-[#1D1D1D] break-words">
+                  The documentation includes information on the Rules of React,
+                  such as component and hook purity, and the Rules of Hooks.
+                </div>
+                <div className="mt-6 text-[#1D1D1D] break-words">
+                  <ul className="list-disc list-inside">
+                    <li>
+                      The React reference documentation is broken down into
+                      functional subsections.
+                    </li>
+                    <li>
+                      It covers Programmatic React features such as Hooks,
+                      Components, APIs, and Directives.
+                    </li>
+                    <li>
+                      It also covers React DOM, which contains features for web
+                      applications running in the browser DOM environment.
+                    </li>
+                    <li>
+                      The documentation includes information on the Rules of
+                      React, such as component and hook purity, and the Rules of
+                      Hooks.
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-6 text-[#1D1D1D] break-words">
+                  <ul className="list-disc list-inside">
+                    <li>
+                      The React reference documentation is broken down into
+                      functional subset.
+                    </li>
+                    <li>
+                      It also covers React DOM, which contains features for web
+                      applications running in the browser DOM environment.
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="absolute bottom-0 pb-[15px] bg-[#FFFFFF80]"
+                  style={{ backdropFilter: "blur(200px)" }}
+                >
+                  <div className="flex justify-between text-[14px] w-[3/5] text-[#1E1E1E]">
+                    Summary level
+                    <div className="font-semibold">{level}</div>
+                  </div>
+                  <CustomSlider
+                    max={5}
+                    min={1}
+                    level={5}
+                    handleChange={handleLevelChange}
+                  />
+                </div>
+              </div>
+              <div className="w-2/5 bg-[#FBFBFB] rounded-[10px] px-4 py-2">
+                <div className="flex">
+                  <button
+                    className={`h-12 w-1/2 text-[#4A3500] ${
+                      selectedOption === "NOTES"
+                        ? "font-semibold border-b-[3px] border-[#4A3500]"
+                        : "font-normal"
+                    }`}
+                    onClick={() => setSelectedOption("NOTES")}
+                  >
+                    Notes
+                  </button>
+                  <button
+                    className={`h-12 w-1/2 text-[#4A3500] ${
+                      selectedOption === "QUESTION"
+                        ? "font-semibold border-b-[3px] border-[#4A3500]"
+                        : "font-normal"
+                    }`}
+                    onClick={() => setSelectedOption("QUESTION")}
+                  >
+                    Add questions
+                  </button>
+                </div>
+                {renderSideBarComponent()}
+              </div>
+            </div>
+          </div>
+        </Modal>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
