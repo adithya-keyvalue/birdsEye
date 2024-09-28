@@ -35,62 +35,72 @@ export const chips = [
 export const savedNotes = [
   {
     id: 1,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Reinforcement Learning : Markov-Decision Process",
+    description:
+      "An overview of the Markov Decision Process framework in reinforcement learning, detailing its components and applications.",
     subtitle: "ACE© Credit Recommendation",
   },
   {
     id: 2,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Agent-Environment Interaction: The Fundamentals",
+    description:
+      "Understanding the interaction between agents and their environments in reinforcement learning.",
     subtitle: "Sprinklr::Idea",
   },
   {
     id: 3,
-    title: "API Reference",
-    description: "react.dev/reference/react",
+    title: "Markov Decision Processes: Formalizing RL Problems",
+    description:
+      "A detailed look at how Markov Decision Processes can be used to structure reinforcement learning problems.",
     subtitle: "Sprinklr::Idea",
   },
   {
     id: 4,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Exploration vs. Exploitation: Balancing Strategies",
+    description:
+      "Exploring the trade-off between exploration and exploitation in reinforcement learning and its impact on learning.",
     subtitle: "Sprinklr::Idea",
   },
   {
     id: 5,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Q-Learning Algorithm: A Deep Dive",
+    description:
+      "An in-depth examination of the Q-Learning algorithm, its principles, and its applications in reinforcement learning.",
     subtitle: "ACE© Credit Recommendation",
   },
   {
     id: 6,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Policy Gradient Methods: Strengths and Limitations",
+    description:
+      "Analyzing policy gradient methods in reinforcement learning, focusing on their advantages and potential drawbacks.",
     subtitle: "Sprinklr::Idea",
   },
   {
     id: 7,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Deep Reinforcement Learning: Combining RL and Neural Networks",
+    description:
+      "Exploring the intersection of deep learning and reinforcement learning, highlighting successful architectures and applications.",
     subtitle: "ACE© Credit Recommendation",
   },
   {
     id: 8,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Challenges in Scaling Reinforcement Learning Algorithms",
+    description:
+      "Discussing the challenges faced when scaling reinforcement learning algorithms for real-world applications.",
     subtitle: "ACE© Credit Recommendation",
   },
   {
     id: 9,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Real-World Applications of RL in Robotics",
+    description:
+      "Investigating how reinforcement learning is applied in the field of robotics, including case studies and outcomes.",
     subtitle: "ACE© Credit Recommendation",
   },
   {
     id: 10,
-    title: "ACE© Credit Recommendation | Chegg Skills + Guild",
-    description: "www.chegg.com",
+    title: "Future Directions in Reinforcement Learning Research",
+    description:
+      "Speculating on the future trends and directions in reinforcement learning research and technology.",
     subtitle: "Sprinklr::Idea",
   },
 ];

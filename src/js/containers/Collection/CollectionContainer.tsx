@@ -10,6 +10,12 @@ const CollectionContainer = () => {
   const [isDetailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
   const [level, setLevel] = useState<number>(1);
   const [selectedOption, setSelectedOption] = useState("NOTES");
+  const [selectedNote, setSelectedNote] = useState<{
+    id: number;
+    title: string;
+    description: string;
+    subtitle: string;
+  }>();
 
   // const [getCollections, getCollectionsState] = useLazyGetCollectionsQuery();
 
@@ -17,19 +23,19 @@ const CollectionContainer = () => {
   //   getCollections();
   // }, []);
 
-	// console.log(getCollectionsState)
+  // console.log(getCollectionsState)
 
   const collectionList = [
-    { id: 1, name: "Curated links" },
-    { id: 2, name: "Research papers" },
-    { id: 3, name: "Welcome papers" },
-    { id: 4, name: "E-Books" },
-    { id: 5, name: "Curated tools" },
-    { id: 6, name: "Scribble" },
-    { id: 7, name: "Artificial Intelligence" },
+    { id: 1, name: "AI Conference 2024 Preparation" },
+    { id: 2, name: "Breakthroughs in Reinforcement Learning" },
+    { id: 3, name: "Thesis Notes: Policy Optimization Techniques" },
+    { id: 4, name: "Dissertation Research: Reinforcement Learning" },
+    { id: 5, name: "Advanced Reinforcement Learning: Study Notes" },
+    { id: 6, name: "Future Trends in Proximal Policy Optimization" },
+    { id: 7, name: "Reinforcement Learning for Autonomous Systems" },
   ];
   const [selectedCollection, setSelectedCollection] = useState(
-    collectionList[1]
+    collectionList[0]
   );
   const handleLevelChange = (event: any) => {
     setLevel(event.target.value);
@@ -143,17 +149,33 @@ const CollectionContainer = () => {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              {savedNotes.map((note) => (
-                <CollectionCard
-                  configNumber={Math.floor(Math.random() * 3)}
-                  title={note.title}
-                  description={note.description}
-                  subtitle={note.subtitle}
-                  onClick={() => {
-                    setDetailsModalOpen(true);
-                  }}
-                />
-              ))}
+              {selectedCollection.id === 4 ? (
+                <>
+                  {savedNotes.map((note) => (
+                    <CollectionCard
+                      configNumber={Math.floor(Math.random() * 3)}
+                      title={note.title}
+                      description={note.description}
+                      subtitle={note.subtitle}
+                      onClick={() => {
+                        setDetailsModalOpen(true);
+                        setSelectedNote(note);
+                      }}
+                    />
+                  ))}
+                </>
+              ) : (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-[16px] leading-[22px] flex flex-col items-center mt-[13rem] gap-[14px] text-[#1D1D1DCC]">
+                    <img
+                      src="../../icons/bird-icon.svg"
+                      alt="icon"
+                      className="h-[7.375rem] w-[7.375rem]"
+                    />
+                    Oops! No notes found in this collection.
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -167,7 +189,7 @@ const CollectionContainer = () => {
             <div className="bg-[#FBFBFB] px-6 py-4 flex justify-between rounded-t-[10px]">
               <div className="text-xs text-[#4A3500] flex items-center gap-2">
                 <img src="../../icons/react-icon.svg" alt="icon" />
-                React Reference Overview – React
+                {selectedNote?.title || 'React Reference Overview – React'}
               </div>
               <button onClick={() => setDetailsModalOpen(false)}>
                 <img src="../../icons/close-icon.svg" alt="close" />
@@ -176,7 +198,7 @@ const CollectionContainer = () => {
             <div className="bg-white p-5 flex gap-9">
               <div className="w-3/5 pl-[105px] pr-[90px] py-4">
                 <div className="font-semibold text-[#4A3500] text-[23px] mb-3">
-                  React Reference Overview – React
+                  {selectedNote?.title || 'React Reference Overview – React'}
                 </div>
                 <div className="p-3 font-medium text-[14px] text-[#4A3500] flex items-center border border-[#F0F0F0] rounded w-fit">
                   Save to collection
