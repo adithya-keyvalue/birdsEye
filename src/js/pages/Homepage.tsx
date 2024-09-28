@@ -3,6 +3,7 @@ import NotesCard from "../components/NotesCard";
 import NavBar from "../components/NavBar";
 import { topbarMenuItems } from "../common";
 import CollectionContainer from "../containers/Collection/CollectionContainer";
+import ChartContainer from "../containers/Chat/ChatContainer";
 
 const HomePage = () => {
   const [selectedMenu, setSelectedMenu] = useState<any>(topbarMenuItems[1]);
@@ -12,7 +13,7 @@ const HomePage = () => {
       case "Collection":
         return <CollectionContainer />
       case "Chat":
-        return <div>Chat</div>;
+        return <ChartContainer />;
     }
   };
 
